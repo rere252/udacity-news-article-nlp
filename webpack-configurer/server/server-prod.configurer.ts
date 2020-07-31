@@ -1,7 +1,7 @@
 import { ServerBaseConfigurer } from './server-base.configurer';
 import { Mode } from '../mode.type';
 import { Configuration } from 'webpack';
-import TerserPlugin = require('terser-webpack-plugin');
+import * as TerserPlugin from 'terser-webpack-plugin';
 
 export class ServerProdConfigurer extends ServerBaseConfigurer {
   getMode(): Mode {

@@ -3,7 +3,7 @@ import { Mode } from '../mode.type';
 import { Plugin, RuleSetUseItem, Configuration } from 'webpack';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import TerserPlugin = require('terser-webpack-plugin');
+import * as TerserPlugin from 'terser-webpack-plugin';
 
 export class ClientProdConfigurer extends ClientBaseConfigurer {
   getMode(): Mode {

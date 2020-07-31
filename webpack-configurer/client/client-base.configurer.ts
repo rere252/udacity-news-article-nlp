@@ -1,6 +1,6 @@
 import { BaseConfigurer } from '../base.configurer';
 import { RuleSetRule, Plugin, RuleSetUseItem } from 'webpack';
-import HtmlWebpackPlugin = require('html-webpack-plugin');
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export abstract class ClientBaseConfigurer extends BaseConfigurer {
   getOutputFolderName(): string {
