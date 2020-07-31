@@ -8,7 +8,7 @@ export abstract class ClientBaseConfigurer extends BaseConfigurer {
   }
 
   getEntryFilePath(): string {
-    return './src/client/ts/client.ts';
+    return './src/client/ts/init.ts';
   }
 
   getPlugins(): Plugin[] {

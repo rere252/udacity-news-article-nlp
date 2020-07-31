@@ -22,7 +22,10 @@ export abstract class BaseConfigurer {
       },
       mode: this.getMode(),
       module: this.getModule(),
-      plugins: this.getPlugins()
+      plugins: this.getPlugins(),
+      resolve: {
+        extensions: ['.ts', '.js']
+      }
     };
   }
 
