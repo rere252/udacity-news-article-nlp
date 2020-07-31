@@ -1,10 +1,14 @@
 import { ClientBaseConfigurer } from './client-base.configurer';
 import { Mode } from '../mode.type';
-import { Configuration } from 'webpack';
+import { Configuration, RuleSetUseItem } from 'webpack';
 
 export class ClientDevConfigurer extends ClientBaseConfigurer {
   getMode(): Mode {
     return 'development';
+  }
+
+  getStyleLoaders(): RuleSetUseItem[] {
+    return ['style-loader', ...super.getStyleLoaders()];
   }
 
   getConfig(): Configuration {

@@ -1,6 +1,6 @@
-import { Plugin, RuleSetUse, Configuration, Module, RuleSetRule } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import * as path from 'path';
+import { Configuration, Module, Plugin, RuleSetRule, RuleSetUseItem } from 'webpack';
 import { Mode } from './mode.type';
 
 export abstract class BaseConfigurer {
@@ -33,8 +33,8 @@ export abstract class BaseConfigurer {
   /**
    * Keep in mind that loaders are executed from right to left (or bottom to top).
    */
-  getTSLoaders(): RuleSetUse {
-    return ['eslint-loader'];
+  getTSLoaders(): RuleSetUseItem[] {
+    return ['babel-loader', 'eslint-loader'];
   }
 
   getRules(): RuleSetRule[] {

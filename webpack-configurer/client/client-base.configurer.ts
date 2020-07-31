@@ -1,5 +1,5 @@
 import { BaseConfigurer } from '../base.configurer';
-import { RuleSetRule, RuleSetUse, Plugin } from 'webpack';
+import { RuleSetRule, Plugin, RuleSetUseItem } from 'webpack';
 import HtmlWebpackPlugin = require('html-webpack-plugin');
 
 export abstract class ClientBaseConfigurer extends BaseConfigurer {
@@ -34,7 +34,7 @@ export abstract class ClientBaseConfigurer extends BaseConfigurer {
   /**
    * Keep in mind that loaders are executed from right to left (or bottom to top).
    */
-  getStyleLoaders(): RuleSetUse {
+  getStyleLoaders(): RuleSetUseItem[] {
     return ['css-loader', 'sass-loader'];
   }
 }

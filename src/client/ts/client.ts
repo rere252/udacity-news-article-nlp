@@ -1,3 +1,5 @@
+import '../styles/main.scss';
+
 fetch('api/test', {
   headers: {
     Accept: 'application/json'
