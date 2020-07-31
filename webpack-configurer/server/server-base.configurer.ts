@@ -8,7 +8,7 @@ export abstract class ServerBaseConfigurer extends BaseConfigurer {
   }
 
   getEntryFilePath(): string {
-    return './src/server/server.ts';
+    return './src/server/init.ts';
   }
 
   getConfig(): Configuration {

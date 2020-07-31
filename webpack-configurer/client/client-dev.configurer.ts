@@ -1,6 +1,7 @@
 import { ClientBaseConfigurer } from './client-base.configurer';
 import { Mode } from '../mode.type';
 import { Configuration, RuleSetUseItem } from 'webpack';
+import { Endpoints } from '../../src/common/api/endpoints';
 
 export class ClientDevConfigurer extends ClientBaseConfigurer {
   getMode(): Mode {
@@ -20,7 +21,7 @@ export class ClientDevConfigurer extends ClientBaseConfigurer {
         contentBase: this.distPath,
         watchContentBase: true,
         proxy: {
-          '/api': {
+          [Endpoints.Prefix]: {
             target: 'http://localhost:8081',
             changeOrigin: true
           }

@@ -1,17 +1,23 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import { Injectable } from 'injection-js';
+import { ApiRouter } from './route/api.router';
+import { Endpoints } from '../common/api/endpoints';
 
-const port = 8081;
-const app = express();
+@Injectable()
+export class Server {
+  private readonly port = 8081;
+  private readonly app = express();
 
-// Serve static site.
-app.use(express.static('dist/client'));
+  constructor(private apiRouter: ApiRouter) {}
 
-// Base router.
-const apiRouter = express.Router();
-
-// API's
-app.use('/api', apiRouter);
-apiRouter.use('/test', (req, resp) => resp.json({ ok: 'dvj' }));
-
-// Start the server.
-app.listen(port, () => console.log(`Server started on ${port}.`));
+  init(): void {
+    this.app.use(bodyParser.json());
+    // Serve static site.
+    this.app.use(express.static('dist/client'));
+    // API's
+    this.app.use(Endpoints.Prefix, this.apiRouter.init());
+    // Start the server.
+    this.app.listen(this.port, () => console.log(`Server started on ${this.port}.`));
+  }
+}
