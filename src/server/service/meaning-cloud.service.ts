@@ -9,8 +9,6 @@ export class MeaningCloudService extends BaseHttpService {
   private readonly apiKey = process.env.MEANING_CLOUD_API_KEY;
 
   analyzeSentiment(htmlString: string): Promise<SentimentAnalysisResponse> {
-    console.log(this.apiKey);
-    console.log(htmlString);
     return this.axios
       .post(
         this.apiURL,
