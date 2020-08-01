@@ -20,7 +20,15 @@ export class ArticleUrlFormComponent extends BaseComponent {
 
   constructor(private articleService: SubmitArticleService) {
     super('errUrlForm');
-    this.urlField = new TextInputComponent('ERR News Article URL', 'url', 'https://news.err.ee/...', 'errURLField');
+    const errUrlPattern = /https:\/\/news.err.ee\/\d+\/.+/;
+    this.urlField = new TextInputComponent(
+      'ERR News Article URL',
+      'url',
+      'https://news.err.ee/...',
+      errUrlPattern,
+      'https://news.err.ee/11193...',
+      'errURLField'
+    );
     this.analyzeButton = new SubmitButtonComponent('submitArticleButton', 'Analyze');
   }
 
