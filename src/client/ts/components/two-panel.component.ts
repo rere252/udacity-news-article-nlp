@@ -1,7 +1,7 @@
 import { BaseComponent } from './base-component';
 
 export class TwoPanelComponent extends BaseComponent {
-  constructor(private title: string, private leftPanel: BaseComponent, private rightPanel: BaseComponent) {
+  constructor(private title: string, public leftPanel: BaseComponent, public rightPanel: BaseComponent) {
     super();
   }
 
@@ -16,7 +16,7 @@ export class TwoPanelComponent extends BaseComponent {
           <h1>${this.title}</h1>
           ${this.leftPanel?.getTemplate()}
         </div>
-        <div id="${this.containerId(this.rightPanel)}" class="two-panel__right">
+        <div class="two-panel__right" id="${this.containerId(this.rightPanel)}">
           ${this.rightPanel?.getTemplate()}
         </div>
       </div>

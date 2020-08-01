@@ -15,7 +15,7 @@ export class AnalyzeArticleController extends BaseController {
     const sar: SubmitArticleRequest = req.body;
     this.articleService
       .getArticle(sar)
-      .then((articleHTML) => this.meaningCloudService.analyzeSentiment(articleHTML))
+      .then((parsed) => this.meaningCloudService.analyzeSentiment(parsed))
       .then((result) => resp.send(result))
       .catch((e) => {
         console.error(e.response);

@@ -3,9 +3,8 @@ import { Injectable } from 'injection-js';
 import { TwoPanelComponent } from './components/two-panel.component';
 import { ArticleUrlFormComponent } from './components/article-url-form.component';
 import { ArticleSentimentComponent } from './components/article-sentiment.component';
-import { BaseComponent } from './components/base-component';
 import { FooterComponent } from './components/footer.component';
-import { SentimentAnalysisResponse } from '../../common/model/sentiment-analysis.response';
+import { ERRAnalysisResponse } from '../../common/model/err-analysis.response';
 
 @Injectable()
 export class Client {
@@ -21,22 +20,22 @@ export class Client {
     const twoPanel = new TwoPanelComponent('ERR Article Sentiment Analysis App', formPanel, sentimentPanel);
     formPanel.onSentimentAnalyzed = (resp) => this.onAnalyzed(twoPanel, resp);
     const footer = new FooterComponent();
-    this.attachToMain(twoPanel, footer);
+    this.attachComponents(twoPanel, footer);
   }
 
-  private attachToMain(...comps: BaseComponent[]): void {
+  private attachComponents(twoPanel: TwoPanelComponent, footer: FooterComponent): void {
     const fragment = new DocumentFragment();
-    for (const comp of comps) {
-      fragment.appendChild(comp.toElement());
-    }
-    const main = document.querySelector('main');
-    main.appendChild(fragment);
-    for (const comp of comps) {
-      comp.onAttached();
-    }
+    const main = document.createElement('main');
+    main.appendChild(twoPanel.toElement());
+    fragment.appendChild(main);
+    fragment.appendChild(footer.toElement());
+    document.body.appendChild(fragment);
+    twoPanel.onAttached();
+    footer.onAttached();
   }
 
-  private onAnalyzed(twoPanel: TwoPanelComponent, resp: SentimentAnalysisResponse) {
+  private onAnalyzed(twoPanel: TwoPanelComponent, resp: ERRAnalysisResponse) {
     twoPanel.updateRightPanel(new ArticleSentimentComponent(resp));
+    twoPanel.leftPanel.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }

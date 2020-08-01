@@ -1,11 +1,11 @@
 import { BaseHttpService } from '../../../common/service/base-http.service';
 import { Endpoints } from '../../../common/api/endpoints';
-import { SentimentAnalysisResponse } from '../../../common/model/sentiment-analysis.response';
+import { ERRAnalysisResponse } from '../../../common/model/err-analysis.response';
 
 export class SubmitArticleService extends BaseHttpService {
   private readonly endpoint = `${Endpoints.Prefix}${Endpoints.AnalyzeArticle}`;
 
-  analyzeArticle(articleUrl: string): Promise<SentimentAnalysisResponse> {
+  analyzeArticle(articleUrl: string): Promise<ERRAnalysisResponse> {
     return this.axios
       .post(this.endpoint, {
         url: articleUrl
