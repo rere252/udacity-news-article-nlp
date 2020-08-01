@@ -14,14 +14,21 @@ export class ArticleParser {
       const title = this.getTitle(article);
       const editor = this.getEditor(article);
       const paragraphs = this.getParagraphs(article);
+      if (!title || !editor || !paragraphs) {
+        this.throwError();
+      }
       return {
         title,
         editor,
         content: paragraphs
       };
     } catch (e) {
-      throw new Error(`Failed to parse article, rawHtml: ${rawHTML}`);
+      this.throwError();
     }
+  }
+
+  private throwError(): void {
+    throw new Error('ERR article in unexpected format');
   }
 
   private getTitle(article: HTMLElement): string {

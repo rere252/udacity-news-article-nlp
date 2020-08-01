@@ -6,6 +6,11 @@ import * as dotenv from 'dotenv';
 
 function start() {
   dotenv.config();
+  if (!process.env.MEANING_CLOUD_API_KEY) {
+    throw new Error(
+      'Missing "MEANING_CLOUD_API_KEY". Please add it to the .env file or provide it from the commandline.'
+    );
+  }
   const server: Server = ReflectiveInjector.resolveAndCreate(declarations).get(Server);
   server.init();
 }

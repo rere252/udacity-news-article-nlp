@@ -5,6 +5,7 @@
 @use './footer';
 @use './loader';
 @use './article-sentiment';
+@use './swal-theme';
 
 html * {
   font-family: 'Roboto', sans-serif;

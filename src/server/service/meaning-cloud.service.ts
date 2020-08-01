@@ -29,7 +29,10 @@ export class MeaningCloudService extends BaseHttpService {
         ...this.removeExcessProperties(r.data),
         articleTitle: article.title,
         editor: article.editor
-      }));
+      }))
+      .catch(() => {
+        throw new Error('Failed analyze article sentiment.');
+      });
   }
 
   /**

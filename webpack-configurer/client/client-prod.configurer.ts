@@ -4,6 +4,7 @@ import { Plugin, RuleSetUseItem, Configuration } from 'webpack';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import * as TerserPlugin from 'terser-webpack-plugin';
+import { GenerateSW } from 'workbox-webpack-plugin';
 
 export class ClientProdConfigurer extends ClientBaseConfigurer {
   getMode(): Mode {
@@ -28,7 +29,8 @@ export class ClientProdConfigurer extends ClientBaseConfigurer {
       ...super.getPlugins(),
       new MiniCssExtractPlugin({
         filename: '[name].css'
-      })
+      }),
+      new GenerateSW()
     ];
   }
 }

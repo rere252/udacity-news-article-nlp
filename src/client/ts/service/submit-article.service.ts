@@ -1,6 +1,8 @@
 import { BaseHttpService } from '../../../common/service/base-http.service';
 import { Endpoints } from '../../../common/api/endpoints';
 import { ERRAnalysisResponse } from '../../../common/model/err-analysis.response';
+import { SimpleError } from '../../../common/model/simple.error';
+import swal from 'sweetalert';
 
 export class SubmitArticleService extends BaseHttpService {
   private readonly endpoint = `${Endpoints.Prefix}${Endpoints.AnalyzeArticle}`;
@@ -10,6 +12,10 @@ export class SubmitArticleService extends BaseHttpService {
       .post(this.endpoint, {
         url: articleUrl
       })
-      .then((r) => r.data);
+      .then((r) => r.data)
+      .catch((e) => {
+        const error: SimpleError = e.response.data;
+        swal(error.message, error.reason, 'error');
+      });
   }
 }

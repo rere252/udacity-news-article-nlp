@@ -1,6 +1,6 @@
 import { Injectable } from 'injection-js';
 import { BaseController } from './base.controller';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { ArticleService } from '../service/article.service';
 import { SubmitArticleRequest } from '../../common/model/submit-article.request';
 import { MeaningCloudService } from '../service/meaning-cloud.service';
@@ -11,15 +11,12 @@ export class AnalyzeArticleController extends BaseController {
     super();
   }
 
-  handle(req: Request, resp: Response): void {
+  handle(req: Request, resp: Response, next: NextFunction): void {
     const sar: SubmitArticleRequest = req.body;
     this.articleService
       .getArticle(sar)
       .then((parsed) => this.meaningCloudService.analyzeSentiment(parsed))
       .then((result) => resp.send(result))
-      .catch((e) => {
-        console.error(e.response);
-        resp.sendStatus(500);
-      });
+      .catch((e) => next(e));
   }
 }
