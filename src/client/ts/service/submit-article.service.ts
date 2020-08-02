@@ -3,11 +3,13 @@ import { Endpoints } from '../../../common/api/endpoints';
 import { ERRAnalysisResponse } from '../../../common/model/err-analysis.response';
 import { SimpleError } from '../../../common/model/simple.error';
 import swal from 'sweetalert';
+import { Injectable } from 'injection-js';
 
+@Injectable()
 export class SubmitArticleService extends BaseHttpService {
   private readonly endpoint = `${Endpoints.Prefix}${Endpoints.AnalyzeArticle}`;
 
-  analyzeArticle(articleUrl: string): Promise<ERRAnalysisResponse> {
+  submitArticle(articleUrl: string): Promise<ERRAnalysisResponse> {
     return this.axios
       .post(this.endpoint, {
         url: articleUrl

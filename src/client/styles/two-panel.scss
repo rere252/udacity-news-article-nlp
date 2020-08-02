@@ -5,7 +5,7 @@ $right: 'right';
 
 .two-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 45vw);
   grid-template-rows: 86vh;
   grid-template-areas: '#{$left} #{$right}';
   margin: 2rem;

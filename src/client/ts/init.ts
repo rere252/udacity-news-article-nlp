@@ -1,8 +1,7 @@
 import '../styles/main.scss';
 import '@abraham/reflection';
-import { ReflectiveInjector } from 'injection-js';
 import { Client } from './client';
-import { declarations } from './declarations';
+import { container } from './container';
 
 function start() {
   // Check that service workers are supported
@@ -15,7 +14,7 @@ function start() {
         .catch(() => console.warn('Ignore if in dev mode'));
     });
   }
-  const client: Client = ReflectiveInjector.resolveAndCreate(declarations).get(Client);
+  const client: Client = container.get(Client);
   client.init();
 }
 

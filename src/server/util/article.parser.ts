@@ -17,6 +17,7 @@ export class ArticleParser {
       if (!title || !editor || !paragraphs) {
         this.throwError();
       }
+      console.log(`Parsed ${title}, ${editor}`);
       return {
         title,
         editor,

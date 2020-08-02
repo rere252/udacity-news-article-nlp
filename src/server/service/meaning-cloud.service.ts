@@ -10,7 +10,7 @@ export class MeaningCloudService extends BaseHttpService {
   private readonly apiURL = 'https://api.meaningcloud.com/sentiment-2.1';
   private readonly apiKey = process.env.MEANING_CLOUD_API_KEY;
 
-  analyzeSentiment(article: ParsedArticle): Promise<ERRAnalysisResponse> {
+  analyzeSentiment(article: ParsedArticle, testKey?: string): Promise<ERRAnalysisResponse> {
     return this.axios
       .post(
         this.apiURL,
@@ -18,9 +18,9 @@ export class MeaningCloudService extends BaseHttpService {
         // For some reason Meaning Cloud wants all the data by query params.
         {
           params: {
-            key: this.apiKey,
+            key: testKey ? testKey : this.apiKey,
             lang: 'en',
-            txt: article,
+            txt: article.content,
             txtf: 'markup'
           }
         }

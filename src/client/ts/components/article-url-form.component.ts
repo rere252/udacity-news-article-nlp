@@ -69,7 +69,7 @@ export class ArticleUrlFormComponent extends BaseComponent {
     }
     this.toggleLoading();
     this.articleService
-      .analyzeArticle(this.urlField.nativeElement.value)
+      .submitArticle(this.urlField.nativeElement.value)
       .then((res) => {
         this._onSentimentAnalyzed(res);
       })

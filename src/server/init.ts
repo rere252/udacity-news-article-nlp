@@ -1,8 +1,7 @@
 import '@abraham/reflection';
-import { ReflectiveInjector } from 'injection-js';
-import { declarations } from './declarations';
 import { Server } from './server';
 import * as dotenv from 'dotenv';
+import { container } from './container';
 
 function start() {
   dotenv.config();
@@ -11,7 +10,7 @@ function start() {
       'Missing "MEANING_CLOUD_API_KEY". Please add it to the .env file or provide it from the commandline.'
     );
   }
-  const server: Server = ReflectiveInjector.resolveAndCreate(declarations).get(Server);
+  const server: Server = container.get(Server);
   server.init();
 }
 
