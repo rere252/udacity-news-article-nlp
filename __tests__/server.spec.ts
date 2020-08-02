@@ -19,7 +19,7 @@ jest.mock('Axios');
 const mockedAxios = Axios as jest.Mocked<typeof Axios>;
 
 describe('Server-side services', () => {
-  const errArticle = fs.readFileSync(path.resolve(__dirname, '../mock/err-article.html'), 'utf8');
+  const errArticle = fs.readFileSync(path.resolve(__dirname, '../mock/err-article.txt'), 'utf8');
 
   test('ERR response gets correctly parsed', () => {
     const parser: ArticleParser = container.get(ArticleParser);
