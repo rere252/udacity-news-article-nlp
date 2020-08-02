@@ -7,11 +7,12 @@
     "test": "jest",
     "start": "run-s build-prod server-node",
     "start-dev": "run-p start-dev-client start-dev-server",
-    "build-prod": "webpack --env=production",
+    "build-prod": "run-s test webpack-prod",
     "start-dev-client": "webpack-dev-server --env=development-client",
     "start-dev-server": "run-p build-dev-server-webpack server-nodemon",
     "build-dev-server-webpack": "webpack --env=development-server --watch",
     "server-nodemon": "nodemon ./dist/server/main.js",
+    "webpack-prod": "webpack --env=production",
     "server-node": "node ./dist/server/main.js"
   },
   "repository": {
